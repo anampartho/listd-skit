@@ -5,7 +5,7 @@
 
 <AppBar>
 	{#snippet lead()}
-		<h1 class="font-extra-bold mb-0 flex items-center font-extrabold">LISTD</h1>
+		<h1 class="mb-0 flex items-center font-extrabold">LISTD</h1>
 	{/snippet}
 	{#snippet trail()}
 		<button><Icon icon="lucide:sun-moon" width={24} height={24} /></button>
