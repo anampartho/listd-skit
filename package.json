@@ -64,6 +64,8 @@
 		"vitest": "^3.0.0"
 	},
 	"dependencies": {
+		"@fontsource/funnel-display": "^5.0.1",
+		"@fontsource/open-sans": "^5.1.1",
 		"drizzle-orm": "^0.38.4",
 		"postgres": "^3.4.5"
 	}
