@@ -1,3 +1,14 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import '@fontsource/open-sans/500.css';
+@import '@fontsource/open-sans/700.css';
+@import '@fontsource/funnel-display/500.css';
+@import '@fontsource/funnel-display/700.css';
+
+:root [data-theme='catppuccin'] {
+	--base-font-family: 'Open Sans', sans-serif;
+	--heading-font-family: 'Funnel Display', sans-serif;
+	--heading-font-weight: 700;
+	--base-font-weight: 500;
+}
