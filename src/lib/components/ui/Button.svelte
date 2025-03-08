@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { children } = $props();
+	let { children, ...rest } = $props();
 </script>
 
-<a class="btn font-bold preset-filled-secondary-500" href="/login">{@render children()}</a>
+<button class="btn font-bold preset-filled-secondary-500" {...rest}>{@render children()}</button>

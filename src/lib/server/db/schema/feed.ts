@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { uuid, varchar } from 'drizzle-orm/pg-core';
+import { uuid, varchar, text } from 'drizzle-orm/pg-core';
 
 import listdSchema, { timestamps } from './shared';
 import { users, feedItem, feedVisibility } from '.';
@@ -8,7 +8,7 @@ const feed = listdSchema.table('feed', {
 	id: uuid('id').primaryKey().defaultRandom(),
 	name: varchar('name', { length: 255 }).notNull(),
 	description: varchar('description', { length: 255 }),
-	createdBy: uuid('created_by').references(() => users.id),
+	createdBy: text('created_by').references(() => users.id),
 	visibility: uuid('visibility').references(() => feedVisibility.id),
 	...timestamps
 });
