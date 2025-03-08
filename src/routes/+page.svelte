@@ -1,6 +1,7 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/Button.svelte';
-	import YoutubeIcon from '$lib/icons/youtube.svelte';
+	import { SignIn } from '@auth/sveltekit/components';
+	import type { PageProps } from './$types';
+	let { data }: PageProps = $props();
 </script>
 
 <div class="card flex justify-center">
@@ -16,7 +17,15 @@
 			</p>
 		</div>
 		<footer class="flex items-center justify-center gap-4 p-4">
-			<Button>Login using Youtube</Button>
+			{#if data?.session?.user?.name}
+				Welcoem <strong>{data?.session?.user?.name}</strong>
+			{:else}
+				<SignIn
+					class="btn font-bold preset-filled-secondary-500"
+					provider="google"
+					signInPage="signin"
+				/>
+			{/if}
 		</footer>
 	</div>
 </div>

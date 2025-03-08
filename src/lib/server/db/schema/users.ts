@@ -1,13 +1,16 @@
 import { relations } from 'drizzle-orm';
-import { uuid, varchar } from 'drizzle-orm/pg-core';
-
-import listdSchema, { timestamps } from './shared';
+import { timestamp, text } from 'drizzle-orm/pg-core';
 import { feed } from '.';
+import listdSchema from './shared';
 
-const users = listdSchema.table('user', {
-	id: uuid('id').primaryKey().defaultRandom(),
-	username: varchar('username', { length: 255 }).notNull().unique(),
-	...timestamps
+export const users = listdSchema.table('user', {
+	id: text('id')
+		.primaryKey()
+		.$defaultFn(() => crypto.randomUUID()),
+	name: text('name'),
+	email: text('email').unique(),
+	emailVerified: timestamp('emailVerified', { mode: 'date' }),
+	image: text('image')
 });
 
 export const usersRelation = relations(users, ({ many }) => ({
