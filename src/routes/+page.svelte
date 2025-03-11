@@ -13,7 +13,8 @@
 				<h3 class="h3 text-center">Welcome to Listd!</h3>
 			</div>
 			<p class="text-center opacity-60">
-				A place where you can create and share your favorite feeds from Youtube and other platforms.
+				A place where you can create and share your favor ite feeds from Youtube and other
+				platforms.
 			</p>
 		</div>
 		<footer class="flex items-center justify-center gap-4 p-4">
