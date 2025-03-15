@@ -2,7 +2,7 @@ import { SvelteKitAuth } from '@auth/sveltekit';
 import Google from '@auth/sveltekit/providers/google';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import { db } from '$lib/server/db/client';
-import { accounts, sessions, users, verificationTokens } from '$lib/server/db/schema';
+import { accounts, sessions, users, userSettings, verificationTokens } from '$lib/server/db/schema';
 
 export const { handle, signIn, signOut } = SvelteKitAuth({
 	trustHost: true,
@@ -12,5 +12,12 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
 		sessionsTable: sessions,
 		verificationTokensTable: verificationTokens
 	}),
-	providers: [Google]
+	providers: [Google],
+	events: {
+		async createUser({ user }) {
+			await db.insert(userSettings).values({
+				userId: user.id
+			});
+		}
+	}
 });

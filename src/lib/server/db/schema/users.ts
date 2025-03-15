@@ -1,6 +1,6 @@
 import { relations } from 'drizzle-orm';
 import { timestamp, text } from 'drizzle-orm/pg-core';
-import { feed } from '.';
+import { feed, userSettings } from '.';
 import listdSchema from './shared';
 
 export const users = listdSchema.table('user', {
@@ -13,8 +13,9 @@ export const users = listdSchema.table('user', {
 	image: text('image')
 });
 
-export const usersRelation = relations(users, ({ many }) => ({
-	feeds: many(feed)
+export const usersRelation = relations(users, ({ one, many }) => ({
+	feeds: many(feed),
+	settings: one(userSettings)
 }));
 
 export default users;
