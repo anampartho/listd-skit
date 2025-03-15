@@ -12,3 +12,4 @@ export {
 } from './feedVisibility';
 export { default as feedItem, feedItemRelations } from './feedItem';
 export { default as feedItemMeta, feedItemTypeEnum, feedItemMetaRelations } from './feedItemMeta';
+export { default as userSettings, userSettingsRelation, colorScheme } from './userSettings';
