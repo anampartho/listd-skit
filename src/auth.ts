@@ -1,18 +1,30 @@
-import { SvelteKitAuth } from '@auth/sveltekit';
+import { SvelteKitAuth, type DefaultSession } from '@auth/sveltekit';
 import Google from '@auth/sveltekit/providers/google';
-import { DrizzleAdapter } from '@auth/drizzle-adapter';
+import PgDrizzleAdapter from '$lib/adapters/pg-drizzle';
 import { db } from '$lib/server/db/client';
-import { accounts, sessions, users, userSettings, verificationTokens } from '$lib/server/db/schema';
+import { userSettings } from '$lib/server/db/schema';
+
+declare module '@auth/sveltekit' {
+	interface Session {
+		user: {
+			onboarded: boolean;
+			colorScheme: string;
+		} & DefaultSession['user'];
+	}
+}
 
 export const { handle, signIn, signOut } = SvelteKitAuth({
 	trustHost: true,
-	adapter: DrizzleAdapter(db, {
-		usersTable: users,
-		accountsTable: accounts,
-		sessionsTable: sessions,
-		verificationTokensTable: verificationTokens
-	}),
+	adapter: PgDrizzleAdapter,
 	providers: [Google],
+	callbacks: {
+		async session({ session, user }) {
+			return {
+				...session,
+				user
+			};
+		}
+	},
 	events: {
 		async createUser({ user }) {
 			await db.insert(userSettings).values({
