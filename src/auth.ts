@@ -13,7 +13,11 @@ declare module '@auth/sveltekit' {
 	}
 }
 
-export const { handle, signIn, signOut } = SvelteKitAuth({
+export const {
+	handle: handleAuth,
+	signIn,
+	signOut
+} = SvelteKitAuth({
 	trustHost: true,
 	adapter: PgDrizzleAdapter,
 	providers: [Google],
