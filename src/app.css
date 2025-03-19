@@ -6,6 +6,8 @@
 @import '@fontsource/funnel-display/500.css';
 @import '@fontsource/funnel-display/700.css';
 
+@plugin '@tailwindcss/forms';
+
 :root [data-theme='catppuccin'] {
 	--base-font-family: 'Open Sans', sans-serif;
 	--heading-font-family: 'Funnel Display', sans-serif;
